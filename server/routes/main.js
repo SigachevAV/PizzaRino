@@ -1,16 +1,21 @@
 const Router = require('express')
+const { UUID } = require('sequelize')
 const router = new Router()
 const {Pizza} = require('../models/models')
 const {Ingridient} = require('../models/models')
 const {PizzaPack} = require('../models/models')
+const uid = require('uuid')
+const path = require('path')
 
 router.post('/', async (req, res) => {
-    const query = req.query
+    const query = req.body
     id_pizza = query.id_pizza
     name_pizza = query.name_pizza
     price_pizza = query.price_pizza
-    image_name_pizza = query.image_name_pizza
-    const pizza = await Pizza.create({image_name_pizza: image_name_pizza,
+    let filename = uid.v4() + ".jpg"
+    const {image_name_pizza} = req.files
+    image_name_pizza.mv(path.resolve(__dirname, '..', 'static', filename))
+    const pizza = await Pizza.create({image_name_pizza: filename,
     name_pizza: name_pizza,
     id_pizza: id_pizza,
     price_pizza: price_pizza})
