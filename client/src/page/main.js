@@ -1,12 +1,19 @@
-import React from "react";
+import React, { useContext } from "react";
+import { Context } from "../index";
+import {Container, Row} from 'react-bootstrap';
+import PizzaList from "../components/pizzaList";
 
-
-const Main = () => {
-  return (
-    <div>
-     main
-    </div>
+const Pizzarina = () => {
+  const {pizza} = useContext(Context)
+  
+  console.log(pizza.pizzas)
+    return (
+    <Container>
+     <Row className="mt-2">
+      <PizzaList/>
+     </Row>
+    </Container>
   );
 };
 
-export default Main;
+export default Pizzarina;

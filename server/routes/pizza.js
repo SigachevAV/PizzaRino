@@ -7,7 +7,7 @@ const { QueryTypes} = require('sequelize')
 const sequlize = require('../db')
 
 
-router.post('/', )
+
 router.get('/', async (req, res) => {
     const {id_pizza} = req.query
     if(!id_pizza)

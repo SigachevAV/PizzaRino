@@ -1,14 +1,16 @@
 import React from "react";
-import {Route, Redirect, Routes} from 'react-router-dom';
-import { routes } from "../routes";
+import {Route, Navigate, Routes} from 'react-router-dom';
+import Pizzarina from "../page/main";
+import Pizza from "../page/pizza";
 const AppRouter = () => {
     const t = false
-    console.log(routes)
     return (
       <Routes>
-       {
-        routes.map(({path, Component}) =>
-         <Route key={path} path={path} component = {Component}/>)
+        {
+            <Route key={'/'} path={'/'} element = {<Pizzarina />} exact/>
+        }
+        {
+            <Route key={'/pizza/:id'} path={'/pizza/:id'} element = {<Pizza />} exact/>
         }
       </Routes>
     );
