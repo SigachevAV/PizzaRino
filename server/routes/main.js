@@ -1,11 +1,12 @@
 const Router = require('express')
 const { UUID } = require('sequelize')
 const router = new Router()
-const {Pizza} = require('../models/models')
+const {Pizza, Orders} = require('../models/models')
 const {Ingridient} = require('../models/models')
 const {PizzaPack} = require('../models/models')
 const uid = require('uuid')
 const path = require('path')
+
 
 router.post('/', async (req, res) => {
     const query = req.body
@@ -45,6 +46,13 @@ router.post('/link', async (req, res) =>
         pizzaIdPizza: pizzaIdPizza,
         is_basic: is_basic
     })
+    return res.json(pack)
+})
+router.post('/order', async (req, res) =>
+{
+    const query = req.query
+    console.log(query)
+    const pack = await Orders.create({price_order: query.price_order, pizzaIdPizza: query.id, order_extras: query.order_extras })
     return res.json(pack)
 })
 router.get('/all', async (req, res) => { const pizzas = await Pizza.findAll()

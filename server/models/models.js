@@ -17,7 +17,7 @@ const PizzaPack = Sequelize.define('pizza_pack', {
 const Orders = Sequelize.define('order', {
     id_order: {type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true},
     price_order: {type: DataTypes.INTEGER},
-    order_extras:{type: DataTypes.ARRAY(DataTypes.INTEGER),}
+    order_extras:{type: DataTypes.TEXT}
 })
 Pizza.hasMany(Orders)
 Orders.belongsTo(Pizza)
